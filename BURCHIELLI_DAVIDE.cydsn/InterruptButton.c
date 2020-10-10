@@ -9,9 +9,11 @@
 #include "InterruptButton.h"
 #include "ColorPatterns.h"
 
+
 // Global variables
 extern uint8_t status ;
 extern uint8_t flag ;
+extern const Pattern PatternsVector[7];
 
 // Define the Button ISR
 CY_ISR (Custom_BUTTON_ISR)
