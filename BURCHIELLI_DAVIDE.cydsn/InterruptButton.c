@@ -26,8 +26,8 @@ CY_ISR (Custom_BUTTON_ISR)
     }
     
     PWM_RG_WritePeriod(PatternsVector[status-1].period);
-    PWM_RG_WriteCompare1(PatternsVector[status-1].red);
-    PWM_RG_WriteCompare2(PatternsVector[status-1].green);
+    PWM_RG_WriteCompare1(255 - PatternsVector[status-1].red);
+    PWM_RG_WriteCompare2(255 - PatternsVector[status-1].green);
     PWM_RG_SetCompareMode1(PatternsVector[status-1].typeRed);
     PWM_RG_SetCompareMode1(PatternsVector[status-1].typeGreen);
     
