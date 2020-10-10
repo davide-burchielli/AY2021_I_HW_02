@@ -11,7 +11,11 @@
 */
 #include "InterruptPWM.h"
 #include "RGBStripsDriver.h"
-//#include "PWM_RG.h"
+#include "ColorPatterns.h"
+#include "PWM_RG.h"
+
+extern uint8_t status ;
+extern uint8_t flag ;
 
 CY_ISR (Custom_PWM_ISR)
 {

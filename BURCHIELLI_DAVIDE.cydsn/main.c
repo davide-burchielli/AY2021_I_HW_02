@@ -15,6 +15,9 @@
 #include "InterruptPWM.h"
 #include "InterruptButton.h"
 
+    
+uint8_t status ;
+uint8_t flag ;
 
 int main(void)
 {

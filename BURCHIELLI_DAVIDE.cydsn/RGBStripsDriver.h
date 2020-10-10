@@ -21,15 +21,7 @@
         uint8 typeRed;
         uint8 typeGreen;
     } Pattern;
-    
-    Pattern PatternsVector[7];
-    
-    uint8_t status ;
-    uint8_t flag ;
-         
-    void RGBStrips_SetPattern(Pattern p);
-      
-    
+
 #endif
 
 
