@@ -15,9 +15,13 @@
 #include "InterruptPWM.h"
 #include "InterruptButton.h"
 
+
 int main(void)
 {
     CyGlobalIntEnable; /* Enable global interrupts. */
+    
+    status = 1;
+    flag = 0;
     
     PWM_RG_Start();
     
