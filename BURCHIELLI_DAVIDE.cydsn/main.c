@@ -10,16 +10,23 @@
  * ========================================
 */
 #include "project.h"
+#include "ColorPatterns.h"
+#include "RGBStripsDriver.h"
+#include "InterruptPWM.h"
+#include "InterruptButton.h"
 
 int main(void)
 {
     CyGlobalIntEnable; /* Enable global interrupts. */
-
-    /* Place your initialization/startup code here (e.g. MyInst_Start()) */
-
+    
+    PWM_RG_Start();
+    
+    isr_BUTTON_StartEx(Custom_BUTTON_ISR);
+    isr_PWM_StartEx(Custom_PWM_ISR);
+    
     for(;;)
     {
-        /* Place your application code here. */
+        
     }
 }
 
