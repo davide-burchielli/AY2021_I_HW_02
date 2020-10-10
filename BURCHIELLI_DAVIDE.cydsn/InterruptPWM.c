@@ -9,7 +9,6 @@
 */
 #include "InterruptPWM.h"
 #include "ColorPatterns.h"
-#include "PWM_RG.h"
 
 // Global variables
 extern uint8_t status ;
@@ -24,7 +23,7 @@ CY_ISR (Custom_PWM_ISR)
     {
         flag = 0;  
         if (PatternsVector[status-1].typeRed == 3) // If CMPType is "GREATER THAN", then
-            PWM_RG_SetCompareMode1(1);             // compare mode is set "LESS THAN"
+            PWM_RG_SetCompareMode1(2);             // compare mode is set "LESS THAN"
         else 
             PWM_RG_SetCompareMode1(3); // Otherwise CMPType is "LESS THAN", so it is changed
                                        // in "GREATER THAN"

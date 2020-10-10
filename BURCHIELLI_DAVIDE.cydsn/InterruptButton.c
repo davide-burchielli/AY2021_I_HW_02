@@ -7,7 +7,6 @@
  * =========================================================================================
 */
 #include "InterruptButton.h"
-#include "PWM_RG.h"
 #include "ColorPatterns.h"
 
 // Global variables
