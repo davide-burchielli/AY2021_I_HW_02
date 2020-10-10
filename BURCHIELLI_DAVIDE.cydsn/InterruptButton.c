@@ -11,8 +11,8 @@
 */
 #include "InterruptButton.h"
 #include "PWM_RG.h"
-#include "RGBStripsDriver.h"
 #include "ColorPatterns.h"
+
 extern uint8_t status ;
 extern uint8_t flag ;
 

@@ -10,7 +10,6 @@
  * ========================================
 */
 #include "InterruptPWM.h"
-#include "RGBStripsDriver.h"
 #include "ColorPatterns.h"
 #include "PWM_RG.h"
 
@@ -22,7 +21,7 @@ CY_ISR (Custom_PWM_ISR)
     if (flag == 1)
     {
         flag = 0;
-        if (PatternsVector[status].typeRed == 3) //if CMP is "GREATER THAN" 
+        if (PatternsVector[status-1].typeRed == 3) //if CMP is "GREATER THAN" 
             PWM_RG_SetCompareMode1(1); // set it "LESS THAN"
         else 
             PWM_RG_SetCompareMode1(3); // set it "GREATER THAN"
