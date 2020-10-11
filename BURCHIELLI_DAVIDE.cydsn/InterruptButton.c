@@ -8,6 +8,8 @@
 */
 #include "InterruptButton.h"
 #include "ColorPatterns.h"
+#include "PWM_RG.h"
+#include "ChangeParameters.h"
 
 
 // Global variables
@@ -27,17 +29,9 @@ CY_ISR (Custom_BUTTON_ISR)
         flag = 1;
     }
     
-    
-    // Change the PWM parameters :
     // NB: it is used [status-1] since the first element of the array is in position 0 and
     // it corresponds to the 1° pattern
-    
-    PWM_RG_WritePeriod(PatternsVector[status-1].period);
-    PWM_RG_WriteCompare1(255 - PatternsVector[status-1].red);   // Subtract from 255 the Compare value since the LED is in common anode configuration
-    PWM_RG_WriteCompare2(255 - PatternsVector[status-1].green); // Subtract from 255 the Compare value since the LED is in common anode configuration
-    PWM_RG_SetCompareMode1(PatternsVector[status-1].typeRed);
-    PWM_RG_SetCompareMode2(PatternsVector[status-1].typeGreen);
-    
+    SwitchPattern (PatternsVector[status-1]);
 }
 
 /* [] END OF FILE */

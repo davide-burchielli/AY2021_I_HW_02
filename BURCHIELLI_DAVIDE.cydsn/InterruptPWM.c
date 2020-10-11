@@ -9,12 +9,14 @@
 */
 #include "InterruptPWM.h"
 #include "ColorPatterns.h"
+#include "PWM_RG.h"
 
 
 // Global variables
 extern uint8_t status ;
 extern uint8_t flag ;
 extern const Pattern PatternsVector[7];
+
 // Define PWN ISR:
 CY_ISR (Custom_PWM_ISR)
 {
