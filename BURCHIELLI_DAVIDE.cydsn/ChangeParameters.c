@@ -3,7 +3,6 @@
  * ========================================
 */
 
-
 #include "ChangeParameters.h"
 #include "project.h"
 
@@ -17,7 +16,5 @@ void SwitchPattern ( Pattern p)
     PWM_RG_SetCompareMode2( p.typeGreen );
     
 }
-
-
 
 /* [] END OF FILE */

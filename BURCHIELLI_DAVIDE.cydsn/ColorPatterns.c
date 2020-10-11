@@ -19,6 +19,5 @@ Pattern PatternsVector[7] = {
                                      { 255, 192, 127, 2, 2 },  // 6° pattern
                                      { 127, 127,  63, 3, 2 }    // 7° pattern
                             };
-            
-     
+
 /* [] END OF FILE */
