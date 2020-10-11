@@ -9,6 +9,7 @@
 #include "InterruptPWM.h"
 #include "InterruptButton.h"
 #include "ChangeParameters.h"
+#include "stdio.h"
 
     
 uint8_t status ; // status variable identify the current configuration, ie. the current colors patterns. 
@@ -19,34 +20,33 @@ uint8_t flag ;  // flag variable is used in order to notify Custom_PWM_ISR, in t
 
 // Global variable 
 extern  Pattern PatternsVector[7];
+char mess[20] = {'\0'};
 
 int main(void)
 {
     CyGlobalIntEnable; // Enable global interrupts
     
+    UART_Start();
+    UART_PutString("Acceso\r\n");
+    
     status = 0;        // When the system is switched on the first pattern is loaded
     flag = 0;          // flag is = 1 only when the 7° pattern is loaded
     
     PWM_RG_Start();    // Start PWM connected to RED and GREEN channels
+    SwitchPattern (PatternsVector[status]);  //Set the PWM parameters for the 1° pattern
+    
+    sprintf(mess, "status: %d \r\n", status);
+    UART_PutString(mess);
+    
+    
     isr_BUTTON_StartEx(Custom_BUTTON_ISR); //Start the ISR of the button
+    
     isr_PWM_StartEx(Custom_PWM_ISR);       //Start the ISR of the PWN
     
-    SwitchPattern (PatternsVector[0]);  //Set the PWM parameters for the 1° pattern
-
-   
-    /*   
-    PWM_RG_WritePeriod(0);
-    PWM_RG_WriteCompare1(0);   // Subtract from 255 the Compare value since the LED is in common anode configuration
-    PWM_RG_WriteCompare2(0); // Subtract from 255 the Compare value since the LED is in common anode configuration
-    PWM_RG_SetCompareMode1(4);
-    PWM_RG_SetCompareMode2(4);
-   */ 
-    
-     
-
     
     for(;;)
     {
+        
         
     }
 }
