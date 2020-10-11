@@ -15,23 +15,24 @@
 // Global variables
 extern uint8_t status ;
 extern uint8_t flag ;
-extern const Pattern PatternsVector[7];
+extern  Pattern PatternsVector[7];
 
 // Define PWN ISR:
 CY_ISR (Custom_PWM_ISR)
 {
-    PWM_RG_ReadStatusRegister(); // The interrupt line is brought down reading the PWN StatusResister
+    
     
     if (flag == 1)  // if flag == 1 means that the current pattern is the 7°
     {
         flag = 0;  
-        if (PatternsVector[status-1].typeRed == 3) // If CMPType is "GREATER THAN", then
-            PWM_RG_SetCompareMode1(2);             // compare mode is set "LESS THAN"
+        if (PWM_RG_ReadCompare1() == 127) // If CMPType is "GREATER THAN", then
+           PWM_RG_WriteCompare1(0);             // compare mode is set "LESS THAN"
         else 
-            PWM_RG_SetCompareMode1(3); // Otherwise CMPType is "LESS THAN", so it is changed
+           PWM_RG_WriteCompare1(127); // Otherwise CMPType is "LESS THAN", so it is changed
                                        // in "GREATER THAN"
     }
 
+    PWM_RG_ReadStatusRegister(); // The interrupt line is brought down reading the PWN StatusResister
 }
 
 /* [] END OF FILE */
