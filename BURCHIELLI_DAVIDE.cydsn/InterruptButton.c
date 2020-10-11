@@ -10,40 +10,33 @@
 #include "ColorPatterns.h"
 #include "PWM_RG.h"
 #include "ChangeParameters.h"
-#include "stdio.h" //////////////
 
 
 // Global variables
-extern uint8_t status ;
+extern uint8_t state ;
 extern uint8_t flag ;
 extern Pattern PatternsVector[7];
 
-extern char mess[20]; /////////////////////
 
 // Define the Button ISR
 CY_ISR (Custom_BUTTON_ISR)
 {
-    sprintf(mess, "status prima: %d \r\n", status); /////////////////
-    UART_PutString(mess);
-    
-    status = (status +1) %8;  // Switch to the next pattern. 
+    state = (state +1) %8;  // Switch to the next pattern. 
                                // The modulus operation is applied so that when the current pattern is the 7°,
-                               // status is set = 1 and so the 1° pattern is loaded.
-    sprintf(mess, "status dopo: %d \r\n", status); /////////////////
-    UART_PutString(mess);
-    if (status == 7)  // If the pattern is the 7°, flag = 1 so that the operation in Custom_PWM_ISR can be performed
-    {
-        flag = 1;
-       sprintf(mess, "FLAGGGG: %d \r\n", flag); /////////////////
-         UART_PutString(mess); 
-    }
-    else flag=0;
+                               // state is set = 1 and so the 1° pattern is loaded.
     
-    // NB: it is used [status-1] since the first element of the array is in position 0 and
+    if (state == 0) //If the state = 0, it is then set = 1 to switch to the 1° pattern
+        state=1;
+    
+    if (state == 7)  // If the pattern is the 7°, flag = 1 so that the operation in Custom_PWM_ISR can be performed
+        flag = 1;
+    else
+        flag = 0;   //Otherwise set it = 0
+    
+   
+    SwitchPattern (PatternsVector[state-1]);  // Call the function PatternVector to switch to the next pattern
+    // NB: it is used [state-1] since the first element of the array is in position 0 and
     // it corresponds to the 1° pattern
-    PWM_RG_Stop();
-    SwitchPattern (PatternsVector[status-1]);
-    PWM_RG_Start();
 }
 
 /* [] END OF FILE */

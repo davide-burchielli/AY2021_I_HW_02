@@ -10,45 +10,29 @@
 #include "InterruptPWM.h"
 #include "ColorPatterns.h"
 #include "PWM_RG.h"
-#include "stdio.h" //////////////
+
 
 // Global variables
-extern uint8_t status ;
+extern uint8_t state ;
 extern uint8_t flag ;
 extern  Pattern PatternsVector[7];
-extern char mess[20]; /////////////////////
+
 
 // Define PWN ISR:
 CY_ISR (Custom_PWM_ISR)
 {
-    UART_PutString("ISR_PWM CHIAMATA\n");
-    PWM_RG_ReadStatusRegister(); // The interrupt line is brought down reading the PWN StatusResister
+    
+    PWM_RG_ReadStatusRegister(); // The interrupt line is brought down reading the PWN Status Resister
+    
     if (flag == 1)  // if flag == 1 means that the current pattern is the 7°
     {
-         UART_PutString("!!!!sono entrato\n");
- 
-         
-        sprintf(mess, "DENTRO, FLAGGGG: %d \r\n", flag); /////////////////
-         UART_PutString(mess); 
-        if (PWM_RG_ReadCompare1() == 127) // If CMPType is "GREATER THAN", then
-           {// PWM_RG_Stop();
-            PWM_RG_WriteCompare1(0); 
-            UART_PutString(".....cambio stato\n");
-            //PWM_RG_Start();
-            }// compare mode is set "LESS THAN"
+        if (PWM_RG_ReadCompare1() == 127) // If the PWM signal is LOW (note: CompareMode for pattern 7 = GREATER and Period=127)
+            PWM_RG_WriteCompare1(0);      // then change the Compare value to make the PWM signal HIGH
+            
         else 
-         {// PWM_RG_Stop();
-            PWM_RG_WriteCompare1(127); 
-            UART_PutString("++++++++cambio stato\n");
-           // PWM_RG_Start();
-            }
-            // Otherwise CMPType is "LESS THAN", so it is changed
-                                       // in "GREATER THAN"
+            PWM_RG_WriteCompare1(127);    // Otherwise the PWM signal is HIGH, change the Compare value to make the PWM signal LOW
     }
-    
-    else UART_PutString("**non sono entrato\n");
-
-    
+     
 }
 
 /* [] END OF FILE */
