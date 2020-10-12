@@ -8,7 +8,7 @@
     
     #include "project.h"
     
-    CY_ISR_PROTO (Custom_PWM_ISR);  // Declare the function for PWM ISR
+    CY_ISR_PROTO (Custom_PWM_ISR);  // Declare the function Custom_PWM_ISR
     
 #endif
 

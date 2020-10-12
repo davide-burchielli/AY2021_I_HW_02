@@ -15,20 +15,19 @@
 // Global variables
 extern uint8_t state ;
 extern uint8_t flag ;
-extern  Pattern PatternsVector[7];
+extern Pattern PatternsVector[7];
 
 
-// Define PWN ISR:
+// Define Custom_PWM_ISR
 CY_ISR (Custom_PWM_ISR)
 {
     
-    PWM_RG_ReadStatusRegister(); // The interrupt line is brought down reading the PWN Status Resister
+    PWM_RG_ReadStatusRegister(); // The interrupt line is brought low reading the PWN Status Resister
     
     if (flag == 1)  // if flag == 1 means that the current pattern is the 7°
     {
         if (PWM_RG_ReadCompare1() == 127) // If the PWM signal is LOW (note: CompareMode for pattern 7 = GREATER and Period=127)
-            PWM_RG_WriteCompare1(0);      // then change the Compare value to make the PWM signal HIGH
-            
+            PWM_RG_WriteCompare1(0);      // then change the Compare value to make the PWM signal HIGH          
         else 
             PWM_RG_WriteCompare1(127);    // Otherwise the PWM signal is HIGH, change the Compare value to make the PWM signal LOW
     }

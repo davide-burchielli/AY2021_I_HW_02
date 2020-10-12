@@ -1,6 +1,8 @@
-/* ============================
+/* =========================================================
      author: Davide Burchielli
- * ============================
+    
+    This file creates the function SwitchPattern prototype
+ * =========================================================
 */
 
 #ifndef _CHANGE_PARAMETERS_H

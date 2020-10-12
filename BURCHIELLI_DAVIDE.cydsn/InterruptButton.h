@@ -8,7 +8,7 @@
     
     #include "project.h"
     
-    CY_ISR_PROTO (Custom_BUTTON_ISR);  // Declare the function for BUTTON ISR
+    CY_ISR_PROTO (Custom_BUTTON_ISR);  // Declare the function Custom_BUTTON_ISR
     
 #endif
 
