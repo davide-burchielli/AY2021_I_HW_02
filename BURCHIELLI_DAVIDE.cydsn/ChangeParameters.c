@@ -2,8 +2,7 @@
     author: Davide Burchielli
 
     This file defines the function SwitchPattern which takes as input a Pattern
-    variable p (an element of the PatternsVector array) and updates PWM
-    parameters.
+    variable p (an element of the PatternsVector array) and updates PWM parameters.
     
     NB: for WriteCompare1 and WriteCompare2 function, the Compare value is
     subtracted from the Period since the LEDs are in common anode configuration

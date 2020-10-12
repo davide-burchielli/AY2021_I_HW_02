@@ -1,10 +1,11 @@
 /* =========================================================================================
     author: Davide Burchielli
 
-    This file creates an array of 'Pattern' variables containing the 7 patterns 
-    //NB for Compare mode values (defined in PWM_RG.h file)
-    // 2 : PWM__B_PWM__LESS_THAN_OR_EQUAL
-    // 3 : PWM__B_PWM__GREATER_THAN
+    This file creates an array of 'Pattern' variables containing the 7 patterns.
+    
+    NB for Compare mode values (defined in PWM_RG.h file):
+     2 : PWM__B_PWM__LESS_THAN_OR_EQUAL
+     3 : PWM__B_PWM__GREATER_THAN
  * =========================================================================================
 */
 
