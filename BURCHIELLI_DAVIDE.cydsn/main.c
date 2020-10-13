@@ -16,11 +16,10 @@
 #include "ChangeParameters.h"
 
     
-uint8_t state ;  // state variable identifies the current configuration, ie. the current colors patterns:
+uint8_t state ;  // state variable identifies the current configuration, ie. the current colors pattern:
                  //state=1 --> 1° pattern , state=2 --> 2° pattern ...
 
-uint8_t flag ;  // flag variable is used in order to notify Custom_PWM_ISR that the current pattern is 
-                // the 7° (state = 7).
+uint8_t flag ;  // flag variable is used to notify Custom_PWM_ISR that the current pattern is the 7° (state = 7).
 
 extern  Pattern PatternsVector[7]; // Patterns global variable 
 

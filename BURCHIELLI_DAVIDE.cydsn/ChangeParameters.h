@@ -1,5 +1,5 @@
 /* =========================================================
-     author: Davide Burchielli
+    author: Davide Burchielli
     
     This file creates the function SwitchPattern prototype
  * =========================================================

@@ -29,7 +29,7 @@ CY_ISR (Custom_BUTTON_ISR)
     if (state == 7)  // If the pattern is the 7°, flag = 1 so that the operation in Custom_PWM_ISR can be performed
         flag = 1;
     else
-        flag = 0;   //Otherwise (every time state !=7) set flag = 0  (to reset it and therefore being sure that it is not = 1)
+        flag = 0;   //Otherwise (every state !=7) set flag = 0  (to reset it and therefore being sure that it is not = 1)
     
     SwitchPattern (PatternsVector[state-1]);  // Call the function PatternVector to switch to the next pattern
    
